@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap");
+
+.messagesContainer::-webkit-scrollbar {
+  width: 7px;
+}
+
+.messagesContainer::-webkit-scrollbar-button {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.messagesContainer::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+
+.messagesContainer::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.messagesContainer::-webkit-scrollbar-track {
+  box-shadow: transparent;
+}
