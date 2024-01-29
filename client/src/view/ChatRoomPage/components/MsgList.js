@@ -4,7 +4,6 @@ import { MediaMsg, TextMsg, ZipMsg } from "./Message/MsgType";
 const MsgList = React.memo(({ messages, userInfo }) => {
   const messagesContainer = useRef(null);
 
-  console.log(messages);
   useEffect(() => {
     messagesContainer.current.scrollTop =
       messagesContainer.current.scrollHeight;

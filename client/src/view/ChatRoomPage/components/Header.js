@@ -34,7 +34,6 @@ const Header = React.memo(({ roomId, socket }) => {
   useEffect(() => {
     let copyTimeOut;
     if (copyState === true) {
-      console.log("copy");
       copyTimeOut = setTimeout(() => {
         setCopyState(false);
       }, 1500);

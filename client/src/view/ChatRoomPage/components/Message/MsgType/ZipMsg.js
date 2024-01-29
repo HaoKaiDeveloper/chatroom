@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineFileText } from "react-icons/ai";
 import MsgWrapper from "../MsgWrapper";
 
-function downloadZip(base64Data, filename) {
+export function downloadZip(base64Data, filename) {
   const link = document.createElement("a");
   link.href = `data:application/zip;base64,${base64Data}`;
   link.download = filename;
@@ -11,18 +11,21 @@ function downloadZip(base64Data, filename) {
   document.body.removeChild(link);
 }
 
+function calcFileSize(size) {
+  let fileSize = "";
+  if (size < 1024) {
+    fileSize = size + "B";
+  } else if (size < 1048576) {
+    fileSize = `${(size / 1024).toFixed(2)} KB`;
+  } else {
+    fileSize = `${(size / 104876).toFixed(2)} MB`;
+  }
+  return fileSize;
+}
+
 const ZipMsg = React.memo(
   ({ userInfo, senderId, size, fileName, senderName, text }) => {
     const classSide = userInfo.userId === senderId ? "self" : "other";
-
-    let fileSize = "";
-    if (size < 1024) {
-      fileSize = size + "B";
-    } else if (size < 1048576) {
-      fileSize = `${(size / 1024).toFixed(2)} KB`;
-    } else {
-      fileSize = `${(size / 104876).toFixed(2)} MB`;
-    }
 
     return (
       <MsgWrapper classSide={classSide}>
@@ -31,7 +34,7 @@ const ZipMsg = React.memo(
           <p className="text-base text-stone-600 font-semibold">{fileName}</p>
           <p className="flex items-center justify-end">
             <AiOutlineFileText />
-            <span>{fileSize}</span>
+            <span>{calcFileSize(size)}</span>
           </p>
           <button
             type="button"

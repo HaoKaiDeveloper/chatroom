@@ -1,12 +1,21 @@
 import { Navigate } from "react-router-dom";
 
-const RouteGuard = function ({ children }) {
-  const localRoomInfo = JSON.parse(localStorage.getItem("roomInfo"));
-  const localUserInfo = JSON.parse(localStorage.getItem("userInfo"));
+function getLocalData(roomInfo, userInfo) {
+  if (
+    !JSON.parse(localStorage.getItem(roomInfo)) ||
+    !JSON.parse(localStorage.getItem(userInfo))
+  ) {
+    return null;
+  }
+  return true;
+}
 
-  // if (!localRoomInfo || !localUserInfo) {
-  //   return <Navigate to="/" />;
-  // }
+const RouteGuard = function ({ children }) {
+  const localData = getLocalData("roomInfo", "userInfo");
+
+  if (!localData) {
+    return <Navigate to="/" />;
+  }
 
   return children;
 };
